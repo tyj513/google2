@@ -34,4 +34,4 @@ jobs:
 
     - name: Run Flask application
       run: |
-        python app.py
+        python ../app.py
