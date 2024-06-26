@@ -24,12 +24,11 @@ jobs:
 
     - name: Download and setup Chrome driver
       run: |
-        # Replace with appropriate commands for Windows
-        # Example: Download ChromeDriver and place it in a suitable directory
-        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE" -OutFile "/tmp/chromedriver_latest_version.txt"
-        $CHROMEDRIVER_VERSION = Get-Content "/tmp/chromedriver_latest_version.txt"
-        Invoke-WebRequest "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_win32.zip" -OutFile "/tmp/chromedriver.zip"
-        Expand-Archive -Path "/tmp/chromedriver.zip" -DestinationPath "C:\chromedriver"
+        # Download ChromeDriver and place it in a suitable directory
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE" -OutFile "$env:USERPROFILE\Downloads\chromedriver_latest_version.txt"
+        $CHROMEDRIVER_VERSION = Get-Content "$env:USERPROFILE\Downloads\chromedriver_latest_version.txt"
+        Invoke-WebRequest "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_win32.zip" -OutFile "$env:USERPROFILE\Downloads\chromedriver.zip"
+        Expand-Archive -Path "$env:USERPROFILE\Downloads\chromedriver.zip" -DestinationPath "C:\chromedriver"
 
     - name: Run Flask application
       run: |
